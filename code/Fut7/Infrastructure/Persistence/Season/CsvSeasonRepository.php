@@ -37,7 +37,6 @@ class CsvSeasonRepository implements SeasonRepositoryInterface
      */
     public function find($id)
     {
-        var_dump(['id'=>$id]);
         return $this->repository->find($id);
     }
 
@@ -53,12 +52,7 @@ class CsvSeasonRepository implements SeasonRepositoryInterface
 
     public function delete(Season $season)
     {
-//        function delete(id)
-//        find(id)
-//        repository->delete(id)
-
-        // read + find => rewrite without found record
-        return $this->repository->delete($data);
+        $this->repository->delete($season->id());
     }
 
 }

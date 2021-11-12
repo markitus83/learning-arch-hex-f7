@@ -16,7 +16,6 @@ class CreateSeasonController
         $name = 'Tempo 2021-2022';
 
         $seasonDTO = new CreateSeasonCommand($id, $name);
-        var_dump(['seasonDTO' =>$seasonDTO]);
 
         $repository = new CsvSeasonRepository(new CsvRepository(self::REPOSITORY_FILE));
         $seasonUseCase = new CreateSeasonUseCase($repository);

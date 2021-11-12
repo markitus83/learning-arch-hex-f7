@@ -41,7 +41,6 @@ class CsvRepository
         echo PHP_EOL . '### Data Stored ###' . PHP_EOL;
         $recordFound = null;
         foreach ($records as $offset => $record) {
-            //var_dump($record);
             echo json_encode($record) . PHP_EOL;
             if ($id === $record[0]) {
                 $recordFound = $record;
@@ -65,26 +64,30 @@ class CsvRepository
         // TODO: Implement update() method.
     }
 
-    public function delete($data)
+    public function delete($id)
     {
-        var_dump($data);
         $reader = Reader::createFromPath($this->persistenceFilename, 'r');
         $records = $reader->getRecords();
 
-        echo PHP_EOL . '### Data Stored ###' . PHP_EOL;
-        $recordFound = null;
+        $newDataToInsert = [];
         foreach ($records as $offset => $record) {
-            echo json_encode($record) . PHP_EOL;
-//            if ($id === $record[0]) {
-//                $recordFound = $record;
-//            }
+            if ($id === $record[0]) {
+                continue;
+            }
+            $newDataToInsert[] = $record;
         }
 
-//        if (null === $recordFound) {
-//            throw new SeasonNotFoundException($id . ' NOT FOUND');
-//        }
-exit();
-        return $recordFound;
+        echo PHP_EOL.'########################';
+        echo PHP_EOL.' Season '.$id.' found >> deleting';
+        echo PHP_EOL.'########################'.PHP_EOL;
+
+        echo PHP_EOL . '### New Data Stored ###' . PHP_EOL;
+        foreach ($newDataToInsert as $offset => $record) {
+            echo json_encode($record) . PHP_EOL;
+        }
+
+        $csv = Writer::createFromPath($this->persistenceFilename, 'w');
+        $csv->insertAll($newDataToInsert);
     }
 
     /**

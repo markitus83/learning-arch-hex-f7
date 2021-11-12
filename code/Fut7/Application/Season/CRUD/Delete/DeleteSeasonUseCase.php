@@ -3,6 +3,7 @@
 namespace Fut7\Application\Season\CRUD\Delete;
 
 use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
+use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Response\Season\DeleteSeasonResponse;
 
 class DeleteSeasonUseCase
@@ -16,8 +17,8 @@ class DeleteSeasonUseCase
 
     public function execute($id): DeleteSeasonResponse
     {
-        $season = $this->seasonRepository->find($id);
-        var_dump(['deleteSeasonUseCase::season'=>$season]);
+        $response = $this->seasonRepository->find($id);
+        $season = Season::createFromRepository($response);
         $this->seasonRepository->delete($season);
         return new DeleteSeasonResponse($season);
     }

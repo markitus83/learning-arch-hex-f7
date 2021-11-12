@@ -14,7 +14,7 @@ class DeleteSeasonController
 
     public function execute()
     {
-        $id = '618511cdbd48e';
+        $id = '618512435f5a0';
         echo 'Trying to delete Season.id = '.$id.PHP_EOL;
 
         try {
