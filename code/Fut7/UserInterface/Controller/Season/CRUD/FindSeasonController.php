@@ -14,7 +14,6 @@ class FindSeasonController
     public function execute()
     {
         $id = '618511cdbd48e';
-//        $id = '618511cdbd48se';
         echo 'Trying to find Season.id = '.$id.PHP_EOL;
 
         $query = new FindSeasonQuery($id);

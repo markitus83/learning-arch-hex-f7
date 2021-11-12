@@ -14,7 +14,5 @@ echo "Learning DDD from scratch".PHP_EOL.PHP_EOL;
 //$controller = new FindSeasonController();
 //$controller->execute();
 
-$controller = new DeleteSeasonController();
-$controller->execute();
-
-
+//$controller = new DeleteSeasonController();
+//$controller->execute();
