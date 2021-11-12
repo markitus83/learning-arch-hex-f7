@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Fut7\\": "Fut7"
+    }
+  },
+  "require": {
+    "league/csv": "^9.0"
+  }
+}
