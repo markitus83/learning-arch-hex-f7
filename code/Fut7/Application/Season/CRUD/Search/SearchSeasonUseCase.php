@@ -14,7 +14,7 @@ class SearchSeasonUseCase
         $this->seasonRepository = $seasonRepository;
     }
 
-    public function execute($criteria)
+    public function execute($criteria): SearchSeasonResponse
     {
         $seasons = $this->seasonRepository->search($criteria);
         return new SearchSeasonResponse($seasons);

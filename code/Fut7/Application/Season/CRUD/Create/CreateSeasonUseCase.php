@@ -13,7 +13,7 @@ class CreateSeasonUseCase
         $this->seasonRepository = $seasonRepository;
     }
 
-    public function execute(CreateSeasonCommand $season)
+    public function execute(CreateSeasonCommand $season): CreateSeasonResponse
     {
         $object = Season::createFromScratch(
             $season->id(),

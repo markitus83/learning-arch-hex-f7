@@ -2,14 +2,14 @@
 
 class FindSeasonQuery
 {
-    private $id;
+    private string $id;
 
     public function __construct($id)
     {
         $this->id = $id;
     }
 
-    public function id()
+    public function id(): string
     {
         return $this->id;
     }
