@@ -16,8 +16,11 @@ class SearchSeasonResponse implements DomainResponseInterface
         return $this->seasons;
     }
 
-    public function getResponse(): string
+    public function getResponse(): array
     {
-        return 'seasons searched';
+        return [
+            'message' => 'Seasons found after search:',
+            'data' => $this->seasons()
+        ];
     }
 }

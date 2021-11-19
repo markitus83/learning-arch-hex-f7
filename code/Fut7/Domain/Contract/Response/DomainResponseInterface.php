@@ -2,5 +2,5 @@
 
 interface DomainResponseInterface
 {
-    public function getResponse(): string;
+    public function getResponse(): array;
 }

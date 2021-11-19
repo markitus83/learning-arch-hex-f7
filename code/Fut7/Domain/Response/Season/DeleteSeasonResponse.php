@@ -17,10 +17,16 @@ class DeleteSeasonResponse implements DomainResponseInterface
         return $this->season;
     }
 
-    public function getResponse(): string
+    public function getResponse(): array
     {
-        return PHP_EOL.'season deleted with ID '
-            .$this->season->id()
-            .' # name: '.$this->season->name();
+        return [
+            'message' => 'Season deleted with ID '.$this->season->id(),
+            'data' => json_encode([
+                $this->season->id(),
+                $this->season->name(),
+                $this->season->createdAt()->format('Y-m-d H:i:s'),
+                $this->season->updatedAt()->format('Y-m-d H:i:s')
+            ])
+        ];
     }
 }
