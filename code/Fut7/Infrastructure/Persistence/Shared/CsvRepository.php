@@ -3,6 +3,8 @@
 namespace Fut7\Infrastructure\Persistence\Shared;
 
 use Fut7\Domain\Exception\Season\SeasonNotFoundException;
+use Fut7\Infrastructure\Persistence\Shared\Csv\Exception\CsvItemNotFoundException;
+use League\Csv\CannotInsertRecord;
 use League\Csv\Statement;
 use League\Csv\Writer;
 use League\Csv\Reader;
@@ -16,54 +18,71 @@ class CsvRepository
         $this->persistenceFilename = $persistenceFilename;
     }
 
-    public function checkPersistFile($filename)
-    {
-        // check exist filename
-
-    }
-
+    /**
+     * @param $data
+     * @throws CannotInsertRecord
+     */
     public function create($data)
     {
         $csv = Writer::createFromPath($this->persistenceFilename, 'a+');
-        $this->checkInsertHeader($csv, $data['header']);
-//        $csv->insertOne($data['header']);
-        $csv->insertAll($data['records']);
+        $csv->insertAll($data);
     }
 
     /**
-     * @throws SeasonNotFoundException
+     * @param $id
+     * @return mixed
+     * @throws CsvItemNotFoundException
      */
     public function find($id)
     {
         $reader = Reader::createFromPath($this->persistenceFilename, 'r');
         $records = $reader->getRecords();
 
-        echo PHP_EOL . '### Data Stored ###' . PHP_EOL;
         $recordFound = null;
         foreach ($records as $offset => $record) {
-            echo json_encode($record) . PHP_EOL;
             if ($id === $record[0]) {
                 $recordFound = $record;
             }
         }
 
         if (null === $recordFound) {
-            throw new SeasonNotFoundException($id . ' NOT FOUND');
+            throw new CsvItemNotFoundException($id);
         }
 
         return $recordFound;
     }
 
-    public function search(array $criteria)
+    public function search(array $criteria): array
     {
-        // TODO: Implement search() method.
+        $reader = Reader::createFromPath($this->persistenceFilename, 'r');
+        $records = $reader->getRecords();
+
+        $recordFound = [];
+        foreach ($records as $offset => $record) {
+            $searchId = strpos($record[0], $criteria['id']);
+            if ($searchId !== false) {
+                $recordFound[] = $record;
+            }
+        }
+
+        return $recordFound;
     }
 
-    public function update($data)
+    /**
+     * @param $id
+     * @param $data
+     * @throws CannotInsertRecord
+     */
+    public function update($id, $data)
     {
-        // TODO: Implement update() method.
+        $this->delete($id);
+        $this->create($data);
     }
 
+    /**
+     * @param $id
+     * @throws CannotInsertRecord
+     */
     public function delete($id)
     {
         $reader = Reader::createFromPath($this->persistenceFilename, 'r');
@@ -81,35 +100,41 @@ class CsvRepository
         echo PHP_EOL.' Season '.$id.' found >> deleting';
         echo PHP_EOL.'########################'.PHP_EOL;
 
-        echo PHP_EOL . '### New Data Stored ###' . PHP_EOL;
-        foreach ($newDataToInsert as $offset => $record) {
-            echo json_encode($record) . PHP_EOL;
-        }
-
         $csv = Writer::createFromPath($this->persistenceFilename, 'w');
         $csv->insertAll($newDataToInsert);
     }
 
     /**
-     * @param Writer $csv
      * @param $header
-     * @throws \League\Csv\CannotInsertRecord
+     * @throws CannotInsertRecord
      */
-    public function checkInsertHeader(Writer $csv, $header): void
+    public function createHeaders($header): void
     {
         try {
+            $writer = Writer::createFromPath($this->persistenceFilename, 'a+');
             $reader = Reader::createFromPath($this->persistenceFilename, 'r');
             $reader->setHeaderOffset(0);
             $records = Statement::create()->process($reader);
             $headers = $records->getHeader();
             if(empty($headers)) {
-                $csv->insertOne($header);
+                $writer->insertOne($header);
                 echo ' #> Header added'.PHP_EOL;
             }
         } catch (\Exception $e) {
             echo $e->getMessage();
-            $csv->insertOne($header);
+            $writer->insertOne($header);
             echo ' >> Header added'.PHP_EOL;
+        }
+    }
+
+    public function showData()
+    {
+        $reader = Reader::createFromPath($this->persistenceFilename, 'r');
+        $records = $reader->getRecords();
+
+        echo PHP_EOL . '### Show Data Stored ###' . PHP_EOL;
+        foreach ($records as $offset => $record) {
+            echo json_encode($record) . PHP_EOL;
         }
     }
 }
