@@ -8,15 +8,15 @@ class Season
     private \DateTime $updatedAt;
 
     private function __construct(
-        string $uuid,
+        string $id,
         string $name
     )
     {
-        $this->id = $uuid;
+        $this->id = $id;
         $this->name = $name;
     }
 
-    public static function createFromScratch($id, $name)
+    public static function createFromScratch($id, $name): Season
     {
         $season = new self($id, $name);
         $season->createdAt = $season->updatedAt = new \DateTime();
@@ -24,7 +24,7 @@ class Season
         return $season;
     }
 
-    public static function createFromRepository($seasonRepositoryData)
+    public static function createFromRepository($seasonRepositoryData): Season
     {
         $season = new self(
             $seasonRepositoryData[0],

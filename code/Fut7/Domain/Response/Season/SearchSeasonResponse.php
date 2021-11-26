@@ -4,7 +4,7 @@ use Fut7\Domain\Contract\Response\DomainResponseInterface;
 
 class SearchSeasonResponse implements DomainResponseInterface
 {
-    private $seasons;
+    private array $seasons;
 
     public function __construct($seasons)
     {

@@ -9,4 +9,5 @@ interface SeasonRepositoryInterface
     public function search(array $criteria);
     public function update(Season $season);
     public function delete(Season $season);
+    public function showData();
 }
