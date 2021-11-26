@@ -9,18 +9,13 @@ use Fut7\Domain\Exception\Season\SeasonDeleteException;
 use Fut7\Domain\Exception\Season\SeasonNotFoundException;
 use Fut7\Domain\Exception\Season\SeasonUpdateException;
 use Fut7\Infrastructure\Persistence\Shared\Csv\Exception\CsvItemNotFoundException;
-use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
+use Fut7\Infrastructure\Persistence\Shared\Csv\Fut7CsvRepository;
 use League\Csv\CannotInsertRecord;
 
 
-class CsvSeasonRepository implements SeasonRepositoryInterface
+class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryInterface
 {
-    private CsvRepository $repository;
-
-    public function __construct(CsvRepository $repository)
-    {
-        $this->repository = $repository;
-    }
+    public const REPOSITORY_FILE = 'Season.csv';
 
     /**
      * @param Season $season
@@ -46,7 +41,6 @@ class CsvSeasonRepository implements SeasonRepositoryInterface
 
         try {
             $this->repository->create($record);
-            $this->repository->showData();
         } catch (CannotInsertRecord $cannotInsertRecord) {
             throw new SeasonCreateException($season->id());
         }
@@ -66,6 +60,10 @@ class CsvSeasonRepository implements SeasonRepositoryInterface
         }
     }
 
+    /**
+     * @param array $criteria
+     * @return array
+     */
     public function search(array $criteria): array
     {
         return $this->repository->search($criteria);
@@ -103,6 +101,11 @@ class CsvSeasonRepository implements SeasonRepositoryInterface
         } catch (CannotInsertRecord $cannotInsertRecord) {
             throw new SeasonDeleteException($season->id());
         }
+    }
+
+    public function showData()
+    {
+        $this->repository->showData();
     }
 
 }

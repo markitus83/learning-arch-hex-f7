@@ -2,7 +2,6 @@
 
 namespace Fut7\Infrastructure\Persistence\Shared;
 
-use Fut7\Domain\Exception\Season\SeasonNotFoundException;
 use Fut7\Infrastructure\Persistence\Shared\Csv\Exception\CsvItemNotFoundException;
 use League\Csv\CannotInsertRecord;
 use League\Csv\Statement;
@@ -11,7 +10,7 @@ use League\Csv\Reader;
 
 class CsvRepository
 {
-    private $persistenceFilename;
+    private string $persistenceFilename;
 
     public function __construct($persistenceFilename)
     {
@@ -96,10 +95,6 @@ class CsvRepository
             $newDataToInsert[] = $record;
         }
 
-        echo PHP_EOL.'########################';
-        echo PHP_EOL.' Season '.$id.' found >> deleting';
-        echo PHP_EOL.'########################'.PHP_EOL;
-
         $csv = Writer::createFromPath($this->persistenceFilename, 'w');
         $csv->insertAll($newDataToInsert);
     }
@@ -132,7 +127,7 @@ class CsvRepository
         $reader = Reader::createFromPath($this->persistenceFilename, 'r');
         $records = $reader->getRecords();
 
-        echo PHP_EOL . '### Show Data Stored ###' . PHP_EOL;
+        echo PHP_EOL.PHP_EOL.'### Show Data Stored ###'.PHP_EOL;
         foreach ($records as $offset => $record) {
             echo json_encode($record) . PHP_EOL;
         }
