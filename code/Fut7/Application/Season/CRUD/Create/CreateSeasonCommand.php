@@ -3,8 +3,8 @@
 
 class CreateSeasonCommand
 {
-    private $id;
-    private $name;
+    private string $id;
+    private string $name;
 
     public function __construct($id, $name)
     {
@@ -12,12 +12,12 @@ class CreateSeasonCommand
         $this->name = $name;
     }
 
-    public function id()
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }

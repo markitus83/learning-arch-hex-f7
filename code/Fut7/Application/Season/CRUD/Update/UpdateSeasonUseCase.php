@@ -18,7 +18,11 @@ class UpdateSeasonUseCase
     public function execute(UpdateSeasonCommand $season): UpdateSeasonResponse
     {
         $response = $this->seasonRepository->find($season->id());
+        echo PHP_EOL.'Current name of Season '.$season->id().': '.$response[1].PHP_EOL;
+
+        sleep(2);
         $season = Season::createFromScratch($season->id(), $season->name());
+        echo PHP_EOL.'New name of Season '.$season->id().': '.$season->name().PHP_EOL;
         $this->seasonRepository->update($season);
         return new UpdateSeasonResponse($season);
     }
