@@ -9,12 +9,8 @@ use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
 
 class FindSeasonController
 {
-    public const REPOSITORY_FILE = 'Fut7/Data/Season.csv';
-
     public function execute()
     {
-        $repositoryFile = getcwd().'/'.self::REPOSITORY_FILE;
-
         $randomIdToFind = ['213f2342', '618e60cb2a85e'];
         $id = $randomIdToFind[rand(0,1)];
         echo 'Trying to find Season.id = '.$id.PHP_EOL;
@@ -22,7 +18,7 @@ class FindSeasonController
         $query = new FindSeasonQuery($id);
 
         try {
-            $repository = new CsvSeasonRepository(new CsvRepository($repositoryFile));
+            $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
             $findSeasonUseCase = new FindSeasonUseCase($repository);
             $response = $findSeasonUseCase->execute($query);
 

@@ -9,19 +9,15 @@ use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
 
 class CreateSeasonController
 {
-    public const REPOSITORY_FILE = 'Fut7/Data/Season.csv';
-
     public function execute()
     {
-        $repositoryFile = getcwd().'/'.self::REPOSITORY_FILE;
-
         $id = uniqid();
         $name = 'Tempo 2021-2022';
 
         $seasonDTO = new CreateSeasonCommand($id, $name);
 
         try {
-            $repository = new CsvSeasonRepository(new CsvRepository($repositoryFile));
+            $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
             $createSeasonUseCase = new CreateSeasonUseCase($repository);
             $response = $createSeasonUseCase->execute($seasonDTO);
 

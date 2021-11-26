@@ -9,22 +9,20 @@ use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
 
 class UpdateSeasonController
 {
-    public const REPOSITORY_FILE = 'Fut7/Data/Season.csv';
-
     public function execute()
     {
-        $repositoryFile = getcwd().'/'.self::REPOSITORY_FILE;
-
         $id = '618e60cb2a85e';
-        $name = 'Update Season '.date('Y.m.d_H.i.s');
+        $name = 'NewSeasonName '.date('H.i.s');
+        echo 'Trying to update Season '.$id.' with new this new name: '.$name.PHP_EOL;
 
         $seasonDTO = new UpdateSeasonCommand($id, $name);
 
-        $repository = new CsvSeasonRepository(new CsvRepository($repositoryFile));
+        $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
         $updateSeasonUseCase = new UpdateSeasonUseCase($repository);
         $response = $updateSeasonUseCase->execute($seasonDTO);
 
-        echo $response->getResponse()['message'];
+        echo PHP_EOL.$response->getResponse()['message'];
         echo PHP_EOL.$response->getResponse()['data'];
+        echo $repository->showData();
     }
 }
