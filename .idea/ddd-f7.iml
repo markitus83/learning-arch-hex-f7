@@ -7,6 +7,14 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/league/csv" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/string" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

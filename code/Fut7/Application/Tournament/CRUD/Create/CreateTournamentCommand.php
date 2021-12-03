@@ -10,7 +10,7 @@ class CreateTournamentCommand
     private string $name;
     private Season $season;
 
-    public function __construct($id, $name, $season)
+    public function __construct(string $id, string $name, Season $season)
     {
         $this->id = $id;
         $this->name = $name;

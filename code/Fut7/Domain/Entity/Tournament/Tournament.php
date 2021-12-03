@@ -2,11 +2,13 @@
 
 namespace Fut7\Domain\Entity\Tournament;
 
+use Fut7\Domain\Entity\Season\Season;
+
 class Tournament
 {
     private string $id;
     private string $name;
-    private string $season;
+    private Season $season;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
 
@@ -29,6 +31,22 @@ class Tournament
         return $tournament;
     }
 
+    public static function createFromRepository($tournamentRepositoryData): Tournament
+    {
+        var_dump($tournamentRepositoryData);
+        exit;
+        $season = Season::createFromRepository($tournamentRepositoryData[2]);
+        $tournament = new self(
+            $tournamentRepositoryData[0],
+            $tournamentRepositoryData[1],
+            $season
+        );
+        $tournament->createdAt = new \DateTime($tournamentRepositoryData[3]);
+        $tournament->updatedAt = new \DateTime($tournamentRepositoryData[4]);
+
+        return $tournament;
+    }
+
     public function id(): string
     {
         return $this->id;
@@ -39,7 +57,7 @@ class Tournament
         return $this->name;
     }
 
-    public function season(): string
+    public function season(): Season
     {
         return $this->season;
     }

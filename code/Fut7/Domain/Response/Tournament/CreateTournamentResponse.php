@@ -24,7 +24,7 @@ class CreateTournamentResponse implements DomainResponseInterface
             'data' => json_encode([
                 $this->tournament->id(),
                 $this->tournament->name(),
-                $this->tournament->season(),
+                $this->tournament->season()->id(),
                 $this->tournament->createdAt()->format('Y-m-d H:i:s'),
                 $this->tournament->updatedAt()->format('Y-m-d H:i:s')
             ])
