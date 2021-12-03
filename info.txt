@@ -113,3 +113,12 @@ interface >> definir reglas
 
 class extends: class / abstract class
 class implements: interface
+
+************************************
+************************************
+
+CLI Application >> propio bin/console
+
+next:
+    terminar CRUD Tournament
+    iniciar test CreateSeason
