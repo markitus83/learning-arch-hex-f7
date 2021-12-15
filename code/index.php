@@ -7,6 +7,7 @@ use Fut7\UserInterface\Controller\Season\CRUD\SearchSeasonController;
 use Fut7\UserInterface\Controller\Season\CRUD\UpdateSeasonController;
 use Fut7\UserInterface\Controller\Season\CRUD\ViewSeasonController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\CreateTournamentController;
+use Fut7\UserInterface\Controller\Tournament\CRUD\DeleteTournamentController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\FindTournamentController;
 use Fut7\UserInterface\CLI\Command\ViewSeasonDataCommand;
 
@@ -29,6 +30,7 @@ echo '6 - View Season data'.PHP_EOL;
 echo '<===================>'.PHP_EOL;
 echo '7 - Create new Tournament'.PHP_EOL;
 echo '8 - Find Tournament'.PHP_EOL;
+echo '9 - Delete Tournament'.PHP_EOL;
 
 echo PHP_EOL;
 
@@ -73,6 +75,10 @@ if (isset($argv[1])) {
         case 8:
             echo '## Find Tournament'.PHP_EOL;
             $controller = new FindTournamentController();
+            $controller->execute();
+        case 9:
+            echo '## Delete Tournament'.PHP_EOL;
+            $controller = new DeleteTournamentController();
             $controller->execute();
     }
 }
