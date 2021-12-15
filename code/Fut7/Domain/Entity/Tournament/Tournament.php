@@ -33,8 +33,6 @@ class Tournament
 
     public static function createFromRepository($tournamentRepositoryData): Tournament
     {
-        var_dump($tournamentRepositoryData);
-        exit;
         $season = Season::createFromRepository($tournamentRepositoryData[2]);
         $tournament = new self(
             $tournamentRepositoryData[0],
