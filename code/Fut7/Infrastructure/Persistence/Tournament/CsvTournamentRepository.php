@@ -105,7 +105,7 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
         }
     }
 
-    public function showData()
+    public function showData(): void
     {
         $this->repository->showData();
     }

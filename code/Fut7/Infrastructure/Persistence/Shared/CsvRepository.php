@@ -122,7 +122,7 @@ class CsvRepository
         }
     }
 
-    public function showData()
+    public function showData(): void
     {
         $reader = Reader::createFromPath($this->persistenceFilename, 'r');
         $records = $reader->getRecords();

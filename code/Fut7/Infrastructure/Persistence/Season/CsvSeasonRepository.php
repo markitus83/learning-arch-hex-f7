@@ -103,7 +103,7 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
         }
     }
 
-    public function showData()
+    public function showData(): void
     {
         $this->repository->showData();
     }
