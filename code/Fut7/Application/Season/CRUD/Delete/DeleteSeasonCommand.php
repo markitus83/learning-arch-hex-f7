@@ -1,6 +1,6 @@
 <?php
 
-namespace Fut7\Application\Season\CRUD\Update;
+namespace Fut7\Application\Season\CRUD\Delete;
 
 class DeleteSeasonCommand
 {
