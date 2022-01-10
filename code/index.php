@@ -1,5 +1,7 @@
 <?php
 
+require_once ("vendor/autoload.php");
+
 use Fut7\UserInterface\Controller\Season\CRUD\CreateSeasonController;
 use Fut7\UserInterface\Controller\Season\CRUD\DeleteSeasonController;
 use Fut7\UserInterface\Controller\Season\CRUD\FindSeasonController;
@@ -11,10 +13,10 @@ use Fut7\UserInterface\Controller\Tournament\CRUD\DeleteTournamentController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\FindTournamentController;
 use Fut7\UserInterface\CLI\Command\ViewSeasonDataCommand;
 
-require_once ("vendor/autoload.php");
 
 use Fut7\UserInterface\Controller\Tournament\CRUD\SearchTournamentController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\UpdateTournamentController;
+use Fut7\UserInterface\Controller\Tournament\CRUD\ViewTournamentController;
 use Symfony\Component\Console\Application;
 
 //$application = new Application();
@@ -35,6 +37,7 @@ echo '8 - Find Tournament'.PHP_EOL;
 echo '9 - Delete Tournament'.PHP_EOL;
 echo '10 - Search Tournament'.PHP_EOL;
 echo '11 - Update Tournament'.PHP_EOL;
+echo '12 - View Tournament data'.PHP_EOL;
 
 echo PHP_EOL;
 
@@ -94,6 +97,11 @@ if (isset($argv[1])) {
         case 11:
             echo '## Update Tournament'.PHP_EOL;
             $controller = new UpdateTournamentController();
+            $controller->execute();
+            break;
+        case 12:
+            echo '## View Tournament data'.PHP_EOL;
+            $controller = new ViewTournamentController();
             $controller->execute();
             break;
     }

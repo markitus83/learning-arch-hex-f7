@@ -16,7 +16,7 @@ class Season
         $this->name = $name;
     }
 
-    public static function createFromScratch($id, $name): Season
+    public static function createFromScratch(string $id, string $name): Season
     {
         $season = new self($id, $name);
         $season->createdAt = $season->updatedAt = new \DateTime();

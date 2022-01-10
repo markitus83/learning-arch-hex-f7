@@ -18,7 +18,6 @@ class UpdateTournamentUseCase
     public function execute(UpdateTournamentCommand $tournament): UpdateTournamentResponse
     {
         $response = $this->tournamentRepository->find($tournament->id());
-        var_dump($response);
         echo PHP_EOL.'Current name of Tournament '.$tournament->id().': '.$response[1].PHP_EOL;
 
         sleep(2);

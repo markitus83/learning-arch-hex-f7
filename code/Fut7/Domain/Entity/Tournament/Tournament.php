@@ -33,11 +33,10 @@ class Tournament
 
     public static function createFromRepository($tournamentRepositoryData): Tournament
     {
-        $season = Season::createFromRepository($tournamentRepositoryData[2]);
         $tournament = new self(
             $tournamentRepositoryData[0],
             $tournamentRepositoryData[1],
-            $season
+            $tournamentRepositoryData[2]
         );
         $tournament->createdAt = new \DateTime($tournamentRepositoryData[3]);
         $tournament->updatedAt = new \DateTime($tournamentRepositoryData[4]);

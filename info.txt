@@ -122,5 +122,13 @@ class implements: interface
 CLI Application >> propio bin/console
 
 next:
-    terminar CRUD Tournament
-    iniciar test CreateSeason
+    [x] terminar CRUD Tournament
+    [x] iniciar test CreateSeason
+        (PHP Unit) how execute test: ./code/vendor/phpunit/phpunit/phpunit tests/StackTest.php
+
+************************************
+************************************
+
+revisar finds (return objs X en lugar de arrays X)
+cambio uniqid >> uuid (ramsey)
+continuar test
