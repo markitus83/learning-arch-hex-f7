@@ -18,8 +18,6 @@ class FindTournamentUseCase
     public function execute(FindTournamentQuery $query): FindTournamentResponse
     {
         $tournamentFind = $this->tournamentRepository->find($query->id());
-        var_dump($tournamentFind);exit;
-        $tournament = Tournament::createFromRepository($tournamentFind);
-        return new FindTournamentResponse($tournament);
+        return new FindTournamentResponse($tournamentFind);
     }
 }

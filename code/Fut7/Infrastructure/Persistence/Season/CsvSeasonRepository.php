@@ -48,13 +48,13 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
 
     /**
      * @param $id
-     * @return mixed
+     * @return Season
      * @throws SeasonNotFoundException
      */
     public function find($id)
     {
         try {
-            return $this->repository->find($id);
+            return Season::createFromRepository($this->repository->find($id));
         } catch (CsvItemNotFoundException $csvItemNotFoundException) {
             throw new SeasonNotFoundException($id);
         }

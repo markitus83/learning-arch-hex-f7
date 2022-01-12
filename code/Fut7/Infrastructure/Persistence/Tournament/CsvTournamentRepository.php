@@ -62,12 +62,9 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
             $tournament = $this->repository->find($id);
             $seasonRepository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
             $season = $seasonRepository->find($tournament[2]);
-            $season = Season::createFromRepository($season);
+            $tournament[2] = $season;
 
-            $tournament[2]  =$season;
-            return $tournament;
-
-            return $this->repository->find($id);
+            return Tournament::createFromRepository($tournament);
         } catch (CsvItemNotFoundException $csvItemNotFoundException) {
             throw new TournamentNotFoundException($id);
         } catch (SeasonNotFoundException $seasonNotFoundException) {

@@ -12,7 +12,7 @@ class FindTournamentController
 {
     public function execute()
     {
-        $randomIdToFind = ['123trf33', '61a9d3d6acac9'];
+        $randomIdToFind = ['123trf33', '61ba1d35dc123'];
         $id = $randomIdToFind[rand(0,1)];
         echo 'Trying to find Tournament.id = '.$id.PHP_EOL;
 
