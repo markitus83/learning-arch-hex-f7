@@ -48,6 +48,11 @@
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/phar-io/version" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/code/vendor/ramsey/uuid" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

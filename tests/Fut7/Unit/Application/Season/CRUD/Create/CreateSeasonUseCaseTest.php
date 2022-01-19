@@ -2,7 +2,9 @@
 
 namespace Fut7\Unit\Application\Season\CRUD\Create;
 
+use Fut7\Application\Season\CRUD\Create\CreateSeasonUseCase;
 use Fut7\Domain\Entity\Season\Season;
+use Fut7\Domain\Response\Season\CreateSeasonResponse;
 use PHPUnit\Framework\TestCase;
 
 class CreateSeasonUseCaseTest extends TestCase
@@ -11,11 +13,13 @@ class CreateSeasonUseCaseTest extends TestCase
     {
         $id = uniqid();
         $name = 'seasonFake';
-        $this->assertNotNull($id, 'Id is null');
-        $this->assertNotNull($name, 'Name is null');
 
         $season = Season::createFromScratch($id, $name);
         $this->assertInstanceOf(Season::class, $season, 'Failed test create Season with basic values');
+
+        $seasonCommand = asdads;
+        $useCase = new CreateSeasonUseCase($seasonCommand);
+        $this->assertInstanceOf(CreateSeasonResponse::class, $useCase);
     }
 
     public function testCreateSeasonWithoutNameFromScratch()

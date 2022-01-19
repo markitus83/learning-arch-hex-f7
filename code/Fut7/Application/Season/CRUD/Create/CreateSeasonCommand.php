@@ -1,20 +1,22 @@
 <?php namespace Fut7\Application\Season\CRUD\Create;
 
 
+use Fut7\Infrastructure\Shared\Utils\Uuid;
+
 class CreateSeasonCommand
 {
-    private string $id;
+    private Uuid $uuid;
     private string $name;
 
-    public function __construct($id, $name)
+    public function __construct($uuid, $name)
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->name = $name;
     }
 
-    public function id(): string
+    public function uuid(): Uuid
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     public function name(): string

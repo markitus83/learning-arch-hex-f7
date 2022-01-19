@@ -32,7 +32,7 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
 
         $record = [
             [
-                $season->id(),
+                $season->uuid(),
                 $season->name(),
                 $season->createdAt()->format('Y-m-d H:i:s'),
                 $season->updatedAt()->format('Y-m-d H:i:s'),

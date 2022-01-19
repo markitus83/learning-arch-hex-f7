@@ -16,7 +16,7 @@ class CreateSeasonUseCase
     public function execute(CreateSeasonCommand $season): CreateSeasonResponse
     {
         $object = Season::createFromScratch(
-            $season->id(),
+            $season->uuid(),
             $season->name()
         );
 

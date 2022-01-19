@@ -6,12 +6,16 @@ use Fut7\Application\Season\CRUD\Create\CreateSeasonUseCase;
 use Fut7\Domain\Exception\Season\SeasonCreateException;
 use Fut7\Infrastructure\Persistence\Season\CsvSeasonRepository;
 use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
+use Fut7\Infrastructure\Shared\Utils\Uuid;
 
 class CreateSeasonController
 {
     public function execute()
     {
         $id = uniqid();
+        //$id = Uuid::uuid4();
+        $id = new Uuid();
+        var_dump($id->value());
         $name = 'Tempo 2021-2022';
 
         $seasonDTO = new CreateSeasonCommand($id, $name);

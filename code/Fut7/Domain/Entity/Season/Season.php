@@ -1,29 +1,34 @@
 <?php namespace Fut7\Domain\Entity\Season;
 
+use Fut7\Infrastructure\Shared\Utils\Uuid;
+
 class Season
 {
-    private string $id;
+    private Uuid $uuid;
     private string $name;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
 
     private function __construct(
-        string $id,
+        Uuid $uuid,
         string $name
     )
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->name = $name;
     }
 
-    public static function createFromScratch(string $id, string $name): Season
+    public static function createFromScratch(Uuid $uuid, string $name): Season
     {
-        $season = new self($id, $name);
+        $season = new self($uuid, $name);
         $season->createdAt = $season->updatedAt = new \DateTime();
 
         return $season;
     }
 
+    /**
+     * @throws \Exception
+     */
     public static function createFromRepository($seasonRepositoryData): Season
     {
         $season = new self(
@@ -36,9 +41,9 @@ class Season
         return $season;
     }
 
-    public function id(): string
+    public function uuid(): string
     {
-        return $this->id;
+        return $this->uuid->value();
     }
 
     public function name(): string
