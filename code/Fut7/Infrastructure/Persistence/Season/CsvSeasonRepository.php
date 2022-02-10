@@ -23,7 +23,7 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
      */
     public function create(Season $season)
     {
-        $header = ['id', 'name', 'createdAt', 'updatedAt'];
+        $header = ['uuid', 'name', 'createdAt', 'updatedAt'];
         try {
             $this->repository->createHeaders($header);
         } catch (CannotInsertRecord $cannotInsertRecord) {
@@ -51,12 +51,14 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
      * @return Season
      * @throws SeasonNotFoundException
      */
-    public function find($id)
+    public function find($id): Season
     {
         try {
             return Season::createFromRepository($this->repository->find($id));
         } catch (CsvItemNotFoundException $csvItemNotFoundException) {
             throw new SeasonNotFoundException($id);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
     }
 
@@ -77,16 +79,16 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
     {
         $record = [
             [
-                $season->id(),
+                $season->uuid(),
                 $season->name(),
                 $season->createdAt()->format('Y-m-d H:i:s'),
                 $season->updatedAt()->format('Y-m-d H:i:s'),
             ],
         ];
         try{
-            $this->repository->update($season->id(), $record);
+            $this->repository->update($season->uuid(), $record);
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new SeasonUpdateException($season->id());
+            throw new SeasonUpdateException($season->uuid());
         }
     }
 
@@ -97,9 +99,9 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
     public function delete(Season $season)
     {
         try{
-            $this->repository->delete($season->id());
+            $this->repository->delete($season->uuid());
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new SeasonDeleteException($season->id());
+            throw new SeasonDeleteException($season->uuid());
         }
     }
 

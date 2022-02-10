@@ -58,7 +58,7 @@ class CsvRepository
 
         $recordFound = [];
         foreach ($records as $offset => $record) {
-            $searchId = strpos($record[0], $criteria['id']);
+            $searchId = strpos($record[0], $criteria['uuid']);
             if ($searchId !== false) {
                 $recordFound[] = $record;
             }

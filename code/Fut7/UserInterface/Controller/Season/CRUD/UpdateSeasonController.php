@@ -11,11 +11,11 @@ class UpdateSeasonController
 {
     public function execute()
     {
-        $id = '618e60cb2a85e';
+        $uuid = 'a169debc-6634-4e6f-ac38-4e8668765886';
         $name = 'NewSeasonName '.date('H.i.s');
-        echo 'Trying to update Season '.$id.' with new this new name: '.$name.PHP_EOL;
+        echo 'Trying to update Season '.$uuid.' with new this new name: '.$name.PHP_EOL;
 
-        $seasonDTO = new UpdateSeasonCommand($id, $name);
+        $seasonDTO = new UpdateSeasonCommand($uuid, $name);
 
         $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
         $updateSeasonUseCase = new UpdateSeasonUseCase($repository);

@@ -11,11 +11,11 @@ class FindSeasonController
 {
     public function execute()
     {
-        $randomIdToFind = ['213f2342', '618e60cb2a85e'];
-        $id = $randomIdToFind[rand(0,1)];
-        echo 'Trying to find Season.id = '.$id.PHP_EOL;
+        $randomUuidToFind = ['213f2342', 'c72134eb-e1c0-48eb-b6bf-7119aef18b9f'];
+        $uuid = $randomUuidToFind[rand(0,1)];
+        echo 'Trying to find Season.uuid = '.$uuid;
 
-        $query = new FindSeasonQuery($id);
+        $query = new FindSeasonQuery($uuid);
 
         try {
             $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
@@ -25,7 +25,7 @@ class FindSeasonController
             echo PHP_EOL.$response->getResponse()['message'];
             echo PHP_EOL.$response->getResponse()['data'];
         } catch (SeasonNotFoundException $seasonNotFoundException) {
-            echo PHP_EOL.'Error found trying to find Season: '.$id.' NOT FOUND';
+            echo PHP_EOL.'Error found trying to find Season: '.$uuid.' NOT FOUND';
         }
     }
 }

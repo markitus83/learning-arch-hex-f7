@@ -27,7 +27,7 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
      */
     public function create(Tournament $tournament)
     {
-        $header = ['id', 'name', 'seasonId', 'createdAt', 'updatedAt'];
+        $header = ['uuid', 'name', 'seasonId', 'createdAt', 'updatedAt'];
         try {
             $this->repository->createHeaders($header);
         } catch (CannotInsertRecord $cannotInsertRecord) {

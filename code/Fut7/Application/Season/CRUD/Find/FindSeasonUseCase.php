@@ -16,7 +16,7 @@ class FindSeasonUseCase
 
     public function execute(FindSeasonQuery $query): FindSeasonResponse
     {
-        $seasonFind = $this->seasonRepository->find($query->id());
+        $seasonFind = $this->seasonRepository->find($query->uuid());
         return new FindSeasonResponse($seasonFind);
     }
 }

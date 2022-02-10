@@ -20,7 +20,7 @@ class CreateSeasonResponse implements DomainResponseInterface
     public function getResponse(): array
     {
         return [
-            'message' => 'Season created with ID '.$this->season->uuid(),
+            'message' => 'Season created with UUID '.$this->season->uuid(),
             'data' => json_encode([
                 $this->season->uuid(),
                 $this->season->name(),
