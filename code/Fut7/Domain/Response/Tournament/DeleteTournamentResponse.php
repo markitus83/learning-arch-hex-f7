@@ -21,11 +21,11 @@ class DeleteTournamentResponse implements DomainResponseInterface
     public function getResponse(): array
     {
         return [
-            'message' => 'Tournament deleted with ID '.$this->tournament->id(),
+            'message' => 'Tournament deleted with ID '.$this->tournament->uuid(),
             'data' => json_encode([
-                $this->tournament->id(),
+                $this->tournament->uuid(),
                 $this->tournament->name(),
-                $this->tournament->season()->id(),
+                $this->tournament->season()->name(),
                 $this->tournament->createdAt()->format('Y-m-d H:i:s'),
                 $this->tournament->updatedAt()->format('Y-m-d H:i:s')
             ])

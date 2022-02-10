@@ -12,13 +12,10 @@ class CreateSeasonController
 {
     public function execute()
     {
-        $id = uniqid();
-        //$id = Uuid::uuid4();
-        $id = new Uuid();
-        var_dump($id->value());
+        $uuid = new Uuid();
         $name = 'Tempo 2021-2022';
 
-        $seasonDTO = new CreateSeasonCommand($id, $name);
+        $seasonDTO = new CreateSeasonCommand($uuid, $name);
 
         try {
             $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
@@ -28,7 +25,7 @@ class CreateSeasonController
             echo PHP_EOL.$response->getResponse()['message'];
             echo PHP_EOL.$response->getResponse()['data'];
         } catch (SeasonCreateException $seasonCreateException) {
-            echo PHP_EOL.'Error found trying to create Season: '.$id;
+            echo PHP_EOL.'Error found trying to create Season: '.$uuid;
         }
     }
 }

@@ -4,18 +4,18 @@ namespace Fut7\Application\Season\CRUD\Update;
 
 class UpdateSeasonCommand
 {
-    private string $id;
+    private string $uuid;
     private string $name;
 
-    public function __construct($id, $name)
+    public function __construct($uuid, $name)
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->name = $name;
     }
 
-    public function id(): string
+    public function uuid(): string
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     public function name(): string

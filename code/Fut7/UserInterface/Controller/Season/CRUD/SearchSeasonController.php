@@ -11,10 +11,10 @@ class SearchSeasonController
 {
     public function execute()
     {
-        $randomIdToSearch = ['qwe233', '61851', ''];
-        $id = $randomIdToSearch[rand(0,2)];
-        $criteriaValue = ['id' => $id];
-        echo 'Trying to search Seasons with id like '.json_encode($criteriaValue).PHP_EOL;
+        $randomUuidToSearch = ['qwe233', '61851', 'c72134eb-e1c0-48eb-b6bf-7119aef18b9f'];
+        $uuid = $randomUuidToSearch[rand(0,2)];
+        $criteriaValue = ['uuid' => $uuid];
+        echo 'Trying to search Seasons with UUID like '.json_encode($criteriaValue).PHP_EOL;
 
         $criteria = new SearchSeasonQuery($criteriaValue);
 

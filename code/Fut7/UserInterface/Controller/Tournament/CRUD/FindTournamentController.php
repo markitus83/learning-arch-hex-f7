@@ -12,11 +12,11 @@ class FindTournamentController
 {
     public function execute()
     {
-        $randomIdToFind = ['123trf33', '61ba1d35dc123'];
-        $id = $randomIdToFind[rand(0,1)];
-        echo 'Trying to find Tournament.id = '.$id.PHP_EOL;
+        $randomUuidToFind = ['xxx-123-fake', '66b0c6a2-4c77-45fa-a719-d9497838740b'];
+        $uuid = $randomUuidToFind[rand(0,1)];
+        echo 'Trying to find Tournament.id = '.$uuid.PHP_EOL;
 
-        $query = new FindTournamentQuery($id);
+        $query = new FindTournamentQuery($uuid);
 
         try {
             $repository = new CsvTournamentRepository(new CsvRepository(CsvTournamentRepository::repositoryFile()));
@@ -26,7 +26,7 @@ class FindTournamentController
             echo PHP_EOL.$response->getResponse()['message'];
             echo PHP_EOL.$response->getResponse()['data'];
         } catch (TournamentNotFoundException $tournamentNotFoundException) {
-            echo PHP_EOL.'Error found trying to find Tournament: '.$id.' NOT FOUND';
+            echo PHP_EOL.'Error found trying to find Tournament: '.$uuid.' NOT FOUND';
         }
     }
 }

@@ -12,20 +12,20 @@ class DeleteTournamentController
 {
     public function execute()
     {
-        $id = '61a9d3d6acac9';
-        echo 'Trying to delete Tournament.id '.$id;
+        $uuid = '211c4898-d4dd-4920-9501-2ec7a5a62e25';
+        echo 'Trying to delete Tournament.uuid '.$uuid;
 
         try {
             $tournamentRepository = new CsvTournamentRepository(new CsvRepository(CsvTournamentRepository::repositoryFile()));
             $deleteTournamentUseCase = new DeleteTournamentUseCase($tournamentRepository);
-            $response = $deleteTournamentUseCase->execute($id);
+            $response = $deleteTournamentUseCase->execute($uuid);
 
             echo PHP_EOL.$response->getResponse()['message'];
             echo PHP_EOL.$response->getResponse()['data'];
         } catch (TournamentNotFoundException $tournamentNotFoundException) {
-            echo PHP_EOL.'Error found trying to find Tournament to delete: '.$id.' NOT FOUND';
+            echo PHP_EOL.'Error found trying to find Tournament to delete: '.$uuid.' NOT FOUND';
         } catch (TournamentDeleteException $tournamentDeleteException) {
-            echo PHP_EOL.'Error found trying to delete Tournament: '.$id;
+            echo PHP_EOL.'Error found trying to delete Tournament: '.$uuid;
         }
     }
 }

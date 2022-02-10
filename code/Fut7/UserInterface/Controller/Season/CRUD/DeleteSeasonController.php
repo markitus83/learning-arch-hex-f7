@@ -11,20 +11,22 @@ class DeleteSeasonController
 {
     public function execute()
     {
-        $id = '618512435f5a0';
-        echo 'Trying to delete Season.id = '.$id.PHP_EOL;
+        $uuid = '409c88a9-e822-456d-95a0-c4331e54d9f0';
+        echo 'Trying to delete Season.id = '.$uuid;
 
         try {
             $repository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
             $deleteSeasonUseCase = new DeleteSeasonUseCase($repository);
-            $response = $deleteSeasonUseCase->execute($id);
+            $response = $deleteSeasonUseCase->execute($uuid);
 
             echo PHP_EOL.$response->getResponse()['message'];
             echo PHP_EOL.$response->getResponse()['data'];
         } catch (SeasonNotFoundException $seasonNotFoundException) {
-            echo PHP_EOL.'Error found trying to find Season to delete: '.$id. ' NOT FOUND';
+            echo PHP_EOL.'Error found trying to find Season to delete: '.$uuid. ' NOT FOUND';
         } catch (SeasonDeleteException $seasonDeleteException) {
-            echo PHP_EOL.'Error found trying to delete Season: '.$id;
+            echo PHP_EOL.'Error found trying to delete Season: '.$uuid;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
     }
 }

@@ -22,7 +22,7 @@ class UpdateSeasonResponse implements DomainResponseInterface
         return [
             'message' => 'Season updated:',
             'data' => json_encode([
-                $this->season->id(),
+                $this->season->uuid(),
                 $this->season->name(),
                 $this->season->createdAt()->format('Y-m-d H:i:s'),
                 $this->season->updatedAt()->format('Y-m-d H:i:s')

@@ -20,11 +20,11 @@ class CreateTournamentResponse implements DomainResponseInterface
     public function getResponse(): array
     {
         return [
-            'message' => 'Tournament created with ID '.$this->tournament->id(),
+            'message' => 'Tournament created with ID '.$this->tournament->uuid(),
             'data' => json_encode([
-                $this->tournament->id(),
+                $this->tournament->uuid(),
                 $this->tournament->name(),
-                $this->tournament->season()->id(),
+                $this->tournament->season()->uuid(),
                 $this->tournament->createdAt()->format('Y-m-d H:i:s'),
                 $this->tournament->updatedAt()->format('Y-m-d H:i:s')
             ])

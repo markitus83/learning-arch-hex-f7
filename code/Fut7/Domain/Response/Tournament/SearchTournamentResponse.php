@@ -11,7 +11,7 @@ class SearchTournamentResponse implements DomainResponseInterface
         $this->tournament = $tournament;
     }
 
-    public function seasons()
+    public function tournament()
     {
         return $this->tournament;
     }
@@ -20,7 +20,7 @@ class SearchTournamentResponse implements DomainResponseInterface
     {
         return [
             'message' => 'Tournament found after search:',
-            'data' => $this->seasons()
+            'data' => $this->tournament()
         ];
     }
 }

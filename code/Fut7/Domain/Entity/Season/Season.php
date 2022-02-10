@@ -32,7 +32,7 @@ class Season
     public static function createFromRepository($seasonRepositoryData): Season
     {
         $season = new self(
-            $seasonRepositoryData[0],
+            new Uuid($seasonRepositoryData[0]),
             $seasonRepositoryData[1]
         );
         $season->createdAt = new \DateTime($seasonRepositoryData[2]);

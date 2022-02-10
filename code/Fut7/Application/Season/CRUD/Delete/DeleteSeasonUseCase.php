@@ -15,10 +15,12 @@ class DeleteSeasonUseCase
         $this->seasonRepository = $seasonRepository;
     }
 
-    public function execute($id): DeleteSeasonResponse
+    /**
+     * @throws \Exception
+     */
+    public function execute($uuid): DeleteSeasonResponse
     {
-        $response = $this->seasonRepository->find($id);
-        $season = Season::createFromRepository($response);
+        $season = $this->seasonRepository->find($uuid);
         $this->seasonRepository->delete($season);
         return new DeleteSeasonResponse($season);
     }

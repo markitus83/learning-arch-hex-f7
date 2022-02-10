@@ -11,10 +11,10 @@ class SearchTournamentController
 {
     public function execute()
     {
-        $randomIdToSearch = ['qwe123', '61a9d', ''];
-        $id = $randomIdToSearch[rand(0,2)];
-        $criteriaValue = ['id' => $id];
-        echo 'Trying to search Tournament whith id like '.json_encode($criteriaValue).PHP_EOL;
+        $randomUuidToSearch = ['qwe123', '669915f8-786d-4864-a3ee-c9eb0bd131bf'];
+        $uuid = $randomUuidToSearch[rand(0,1)];
+        $criteriaValue = ['uuid' => $uuid];
+        echo 'Trying to search Tournament whith UUID like '.json_encode($criteriaValue).PHP_EOL;
 
         $criteria = new SearchTournamentQuery($criteriaValue);
 

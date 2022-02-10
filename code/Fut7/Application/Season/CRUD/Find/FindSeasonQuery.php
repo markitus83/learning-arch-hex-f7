@@ -2,16 +2,16 @@
 
 class FindSeasonQuery
 {
-    private string $id;
+    private string $uuid;
 
-    public function __construct($id)
+    public function __construct($uuid)
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
     }
 
-    public function id(): string
+    public function uuid(): string
     {
-        return $this->id;
+        return $this->uuid;
     }
 
 }
