@@ -22,7 +22,7 @@ class UpdateTournamentResponse implements DomainResponseInterface
         return [
             'message' => 'Tournament updated:',
             'data' => json_encode([
-                $this->tournament->id(),
+                $this->tournament->uuid(),
                 $this->tournament->name(),
                 $this->tournament->season(),
                 $this->tournament->createdAt()->format('Y-m-d H:i:s'),

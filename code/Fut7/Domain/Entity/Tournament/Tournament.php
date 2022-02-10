@@ -3,38 +3,44 @@
 namespace Fut7\Domain\Entity\Tournament;
 
 use Fut7\Domain\Entity\Season\Season;
+use Fut7\Infrastructure\Shared\Utils\Uuid;
 
 class Tournament
 {
-    private string $id;
+    private Uuid $uuid;
     private string $name;
     private Season $season;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
 
     private function __construct(
-        $id,
-        $name,
-        $season
+        Uuid $uuid,
+        string $name,
+        Season $season
     )
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->name = $name;
         $this->season = $season;
     }
 
-    public static function createFromScratch($id, $name, $season): Tournament
+    public static function createFromScratch(Uuid $uuid, string $name, Season $season): Tournament
     {
-        $tournament = new self($id, $name, $season);
+        $tournament = new self($uuid, $name, $season);
         $tournament->createdAt = $tournament->updatedAt = new \DateTime();
 
         return $tournament;
     }
 
+    /**
+     * @param $tournamentRepositoryData
+     * @return Tournament
+     * @throws \Exception
+     */
     public static function createFromRepository($tournamentRepositoryData): Tournament
     {
         $tournament = new self(
-            $tournamentRepositoryData[0],
+            new Uuid($tournamentRepositoryData[0]),
             $tournamentRepositoryData[1],
             $tournamentRepositoryData[2]
         );
@@ -44,9 +50,9 @@ class Tournament
         return $tournament;
     }
 
-    public function id(): string
+    public function uuid(): string
     {
-        return $this->id;
+        return $this->uuid->value();
     }
 
     public function name(): string

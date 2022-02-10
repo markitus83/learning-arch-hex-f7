@@ -17,7 +17,7 @@ class FindTournamentUseCase
 
     public function execute(FindTournamentQuery $query): FindTournamentResponse
     {
-        $tournamentFind = $this->tournamentRepository->find($query->id());
+        $tournamentFind = $this->tournamentRepository->find($query->uuid());
         return new FindTournamentResponse($tournamentFind);
     }
 }

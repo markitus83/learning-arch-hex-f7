@@ -16,12 +16,9 @@ class DeleteTournamentUseCase
         $this->tournamentRepository = $tournamentRepository;
     }
 
-    public function execute($id): DeleteTournamentResponse
+    public function execute($uuid): DeleteTournamentResponse
     {
-        // TODO: xxRepository find puede devolver obj X, asi ahorramos el createXXX
-        // TODO: esto provoca acoplamiento a Infraestructura
-        $tournament = $this->tournamentRepository->find($id);
-        $tournament = Tournament::createFromRepository($tournament);
+        $tournament = $this->tournamentRepository->find($uuid);
 
         $this->tournamentRepository->delete($tournament);
         return new DeleteTournamentResponse($tournament);

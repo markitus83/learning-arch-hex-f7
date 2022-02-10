@@ -19,7 +19,7 @@ class CreateTournamentUseCase
         CreateTournamentCommand $tournamentCommand
     ): CreateTournamentResponse{
         $object = Tournament::createFromScratch(
-            $tournamentCommand->id(),
+            $tournamentCommand->uuid(),
             $tournamentCommand->name(),
             $tournamentCommand->season()
         );

@@ -16,10 +16,10 @@ class UpdateTournamentController
 {
     public function execute()
     {
-        $id = '61a9d3d6acac9';
+        $uuid = '5c515f49-8086-42cf-afdb-0d27c9d598df';
         $name = 'UpdateTournament_'.date('d.m.H.i.s');
-        $season = '618511899fbe4';
-        echo 'Trying to update Tournament '.$id.' with this new name '.$name.PHP_EOL;
+        $season = 'f6eef104-7236-4b62-87d8-c3b77031acdc';
+        echo 'Trying to update Tournament '.$uuid.' with this new name '.$name.PHP_EOL;
 
         try{
             $csvSeasonRepository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
@@ -28,7 +28,7 @@ class UpdateTournamentController
             $season = $findSeasonUseCase->execute($seasonDTO);
 
             $repository = new CsvTournamentRepository(new CsvRepository(CsvTournamentRepository::repositoryFile()));
-            $tournamentDTO = new UpdateTournamentCommand($id, $name, $season->season());
+            $tournamentDTO = new UpdateTournamentCommand($uuid, $name, $season->season());
             $updateTournamentUseCase = new UpdateTournamentUseCase($repository);
             $response = $updateTournamentUseCase->execute($tournamentDTO);
 
@@ -36,7 +36,7 @@ class UpdateTournamentController
             echo PHP_EOL.$response->getResponse()['data'];
             echo $repository->showData();
         } catch (TournamentCreateException $tournamentCreateException) {
-            echo PHP_EOL.'Error found trying to create Tournament: '.$id;
+            echo PHP_EOL.'Error found trying to create Tournament: '.$uuid;
         } catch (SeasonNotFoundException $seasonNotFoundException) {
             echo PHP_EOL.'Error found trying to find Season: '.$season;
         }

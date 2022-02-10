@@ -31,14 +31,14 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
         try {
             $this->repository->createHeaders($header);
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new TournamentCreateException($tournament->id());
+            throw new TournamentCreateException($tournament->uuid());
         }
 
         $record = [
             [
-                $tournament->id(),
+                $tournament->uuid(),
                 $tournament->name(),
-                $tournament->season()->id(),
+                $tournament->season()->uuid(),
                 $tournament->createdAt()->format('Y-m-d H:i:s'),
                 $tournament->updatedAt()->format('Y-m-d H:i:s'),
             ],
@@ -47,28 +47,31 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
         try {
             $this->repository->create($record);
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new TournamentCreateException($tournament->id());
+            throw new TournamentCreateException($tournament->uuid());
         }
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * @param $uuid
+     * @return Tournament|void
      * @throws TournamentNotFoundException
+     * @throws SeasonNotFoundException
      */
-    public function find($id)
+    public function find($uuid)
     {
+        $tournament = null;
         try {
-            $tournament = $this->repository->find($id);
+            $tournament = $this->repository->find($uuid);
             $seasonRepository = new CsvSeasonRepository(new CsvRepository(CsvSeasonRepository::repositoryFile()));
             $season = $seasonRepository->find($tournament[2]);
             $tournament[2] = $season;
 
             return Tournament::createFromRepository($tournament);
         } catch (CsvItemNotFoundException $csvItemNotFoundException) {
-            throw new TournamentNotFoundException($id);
+            throw new TournamentNotFoundException($uuid);
         } catch (SeasonNotFoundException $seasonNotFoundException) {
             throw new SeasonNotFoundException($tournament[2]);
+        } catch (\Exception $e) {
         }
     }
 
@@ -89,17 +92,17 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
     {
         $record = [
             [
-                $tournament->id(),
+                $tournament->uuid(),
                 $tournament->name(),
-                $tournament->season()->id(),
+                $tournament->season()->uuid(),
                 $tournament->createdAt()->format('Y-m-d H:i:s'),
                 $tournament->updatedAt()->format('Y-m-d H:i:s'),
             ],
         ];
         try{
-            $this->repository->update($tournament->id(), $record);
+            $this->repository->update($tournament->uuid(), $record);
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new TournamentUpdateException($tournament->id());
+            throw new TournamentUpdateException($tournament->uuid());
         }
     }
 
@@ -110,9 +113,9 @@ class CsvTournamentRepository extends Fut7CsvRepository implements TournamentRep
     public function delete(Tournament $tournament)
     {
         try{
-            $this->repository->delete($tournament->id());
+            $this->repository->delete($tournament->uuid());
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new TournamentDeleteException($tournament->id());
+            throw new TournamentDeleteException($tournament->uuid());
         }
     }
 

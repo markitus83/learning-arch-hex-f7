@@ -21,9 +21,9 @@ class FindTournamentResponse implements DomainResponseInterface
     public function getResponse(): array
     {
         return [
-            'message' => 'Tournament found with ID '.$this->tournament->id(),
+            'message' => 'Tournament found with UUID '.$this->tournament->uuid(),
             'data' => json_encode([
-                $this->tournament->id(),
+                $this->tournament->uuid(),
                 $this->tournament->name(),
                 $this->tournament->season()->name(),
                 $this->tournament->createdAt()->format('Y-m-d H:i:s'),
