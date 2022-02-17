@@ -1,9 +1,8 @@
 <?php
 
-namespace Fut7\Unit\Domain\Season;
+namespace Fut7\Unit\Domain\Entity\Season;
 
 use Fut7\Domain\Entity\Season\Season;
-use http\Exception\InvalidArgumentException;
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 use PHPUnit\Framework\TestCase;
 
