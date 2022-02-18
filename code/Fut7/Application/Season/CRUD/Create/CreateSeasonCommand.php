@@ -10,9 +10,13 @@ class CreateSeasonCommand
 
     public function __construct($uuid, $name)
     {
-        if (null === $name) {
+        if (null === $name || 'string' !== gettype($name)) {
             throw new \TypeError("Name must be a string!!");
         }
+        if (!($uuid instanceof Uuid)) {
+            throw new \TypeError("Uuid must be an instance of Uuid!!");
+        }
+
         $this->uuid = $uuid;
         $this->name = $name;
     }

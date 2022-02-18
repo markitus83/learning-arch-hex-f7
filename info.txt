@@ -131,5 +131,5 @@ next:
 ************************************
 
 [X] revisar finds (return objs X en lugar de arrays X)
-[ ] cambio uniqid >> uuid (ramsey)
+[X] cambio uniqid >> uuid (ramsey)
 [ ] continuar test
