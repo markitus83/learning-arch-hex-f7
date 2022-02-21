@@ -1,0 +1,15 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Fut7\\": "Fut7"
+    }
+  },
+  "require": {
+    "league/csv": "^9.0",
+    "symfony/console": "^6.0",
+    "ramsey/uuid": "^4.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  }
+}
