@@ -1,4 +1,6 @@
-<?php namespace Fut7\Domain\Contract\Repository;
+<?php
+
+namespace Fut7\Domain\Contract\Repository;
 
 use Fut7\Domain\Entity\Season\Season;
 

@@ -3,7 +3,6 @@
 namespace Fut7\Application\Season\CRUD\Delete;
 
 use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
-use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Response\Season\DeleteSeasonResponse;
 
 class DeleteSeasonUseCase

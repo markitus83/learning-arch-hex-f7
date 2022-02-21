@@ -3,7 +3,6 @@
 namespace Fut7\Infrastructure\Persistence\Tournament;
 
 use Fut7\Domain\Contract\Repository\TournamentRepositoryInterface;
-use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Entity\Tournament\Tournament;
 use Fut7\Domain\Exception\Season\SeasonNotFoundException;
 use Fut7\Domain\Exception\Tournament\TournamentCreateException;

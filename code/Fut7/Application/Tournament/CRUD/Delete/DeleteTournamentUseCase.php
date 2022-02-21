@@ -3,7 +3,6 @@
 namespace Fut7\Application\Tournament\CRUD\Delete;
 
 use Fut7\Domain\Contract\Repository\TournamentRepositoryInterface;
-use Fut7\Domain\Entity\Tournament\Tournament;
 use Fut7\Domain\Response\Tournament\DeleteTournamentResponse;
 
 class DeleteTournamentUseCase

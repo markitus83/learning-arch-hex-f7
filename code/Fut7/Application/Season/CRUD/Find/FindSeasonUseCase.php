@@ -1,8 +1,8 @@
-<?php namespace Fut7\Application\Season\CRUD\Find;
+<?php
 
+namespace Fut7\Application\Season\CRUD\Find;
 
 use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
-use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Response\Season\FindSeasonResponse;
 
 class FindSeasonUseCase

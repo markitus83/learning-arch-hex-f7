@@ -1,5 +1,6 @@
-<?php namespace Fut7\UserInterface\Controller\Season\CRUD;
+<?php
 
+namespace Fut7\UserInterface\Controller\Season\CRUD;
 
 use Fut7\Application\Season\CRUD\Delete\DeleteSeasonUseCase;
 use Fut7\Domain\Exception\Season\SeasonDeleteException;

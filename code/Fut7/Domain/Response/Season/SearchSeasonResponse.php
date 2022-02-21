@@ -1,4 +1,6 @@
-<?php namespace Fut7\Domain\Response\Season;
+<?php
+
+namespace Fut7\Domain\Response\Season;
 
 use Fut7\Domain\Contract\Response\DomainResponseInterface;
 

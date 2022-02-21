@@ -1,4 +1,6 @@
-<?php namespace Fut7\Domain\Contract\Response;
+<?php
+
+namespace Fut7\Domain\Contract\Response;
 
 interface DomainResponseInterface
 {

@@ -3,7 +3,6 @@
 namespace Fut7\Application\Tournament\CRUD\Update;
 
 use Fut7\Domain\Entity\Season\Season;
-use Fut7\Infrastructure\Shared\Utils\Uuid;
 
 class UpdateTournamentCommand
 {
