@@ -8,6 +8,9 @@ class SearchSeasonResponse implements DomainResponseInterface
 
     public function __construct($seasons)
     {
+        if ('array' !== gettype($seasons)) {
+            throw new \TypeError("Response must be an array!! ".gettype($seasons));
+        }
         $this->seasons = $seasons;
     }
 

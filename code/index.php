@@ -41,15 +41,15 @@ $string = 'string';
 $uuid = new \Fut7\Infrastructure\Shared\Utils\Uuid();
 $uuid_instance = $uuid instanceof \Fut7\Infrastructure\Shared\Utils\Uuid;
 
-var_dump(
-    [
-        'int'=>gettype($int),
-        'string'=>gettype($string),
-        'uuid' => gettype($uuid),
-        'uuid_instance' => $uuid_instance
-    ]
-);
-die('fin');
+//var_dump(
+//    [
+//        'int'=>gettype($int),
+//        'string'=>gettype($string),
+//        'uuid' => gettype($uuid),
+//        'uuid_instance' => $uuid_instance
+//    ]
+//);
+//die('fin');
 
 if (isset($argv[1])) {
     $option = $argv[1];

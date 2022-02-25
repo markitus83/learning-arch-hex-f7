@@ -5,7 +5,6 @@ namespace Fut7\Unit\Application\Season\CRUD\Create;
 use Fut7\Application\Season\CRUD\Create\CreateSeasonCommand;
 use Fut7\Application\Season\CRUD\Create\CreateSeasonUseCase;
 use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
-use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Response\Season\CreateSeasonResponse;
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 use PHPUnit\Framework\TestCase;

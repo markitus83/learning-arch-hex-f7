@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/code/Fut7" isTestSource="false" packagePrefix="Fut7\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/code/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/league/csv" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/code/vendor/symfony/polyfill-ctype" />

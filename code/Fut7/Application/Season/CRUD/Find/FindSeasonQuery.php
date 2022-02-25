@@ -6,6 +6,10 @@ class FindSeasonQuery
 
     public function __construct($uuid)
     {
+        if ('string' !== gettype($uuid)) {
+            throw new \TypeError("Uuid to find must be a string!!");
+        }
+
         $this->uuid = $uuid;
     }
 
