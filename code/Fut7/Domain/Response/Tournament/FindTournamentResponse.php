@@ -1,7 +1,8 @@
-<?php namespace Fut7\Domain\Response\Tournament;
+<?php
+
+namespace Fut7\Domain\Response\Tournament;
 
 use Fut7\Domain\Contract\Response\DomainResponseInterface;
-use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Entity\Tournament\Tournament;
 
 class FindTournamentResponse implements DomainResponseInterface

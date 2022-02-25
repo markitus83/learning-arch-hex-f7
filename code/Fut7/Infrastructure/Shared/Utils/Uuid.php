@@ -3,6 +3,7 @@
 namespace Fut7\Infrastructure\Shared\Utils;
 
 use Ramsey\Uuid\Uuid as RamseyUuid;
+
 class Uuid
 {
     private string $value;

@@ -1,4 +1,6 @@
-<?php namespace Fut7\Domain\Entity\Season;
+<?php
+
+namespace Fut7\Domain\Entity\Season;
 
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 

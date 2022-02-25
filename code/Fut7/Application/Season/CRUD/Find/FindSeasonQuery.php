@@ -1,4 +1,6 @@
-<?php namespace Fut7\Application\Season\CRUD\Find;
+<?php
+
+namespace Fut7\Application\Season\CRUD\Find;
 
 class FindSeasonQuery
 {

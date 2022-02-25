@@ -1,5 +1,6 @@
-<?php namespace Fut7\Application\Season\CRUD\Create;
+<?php
 
+namespace Fut7\Application\Season\CRUD\Create;
 
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 
