@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 class SearchSeasonUseCaseTest extends TestCase
 {
+    /**
+     * @throws SeasonSearchEmptyCriteriaException
+     */
     public function testSearchSeasonUseCaseErrorNullCriteria()
     {
         $this->expectException(\TypeError::class);
@@ -60,8 +63,8 @@ class SearchSeasonUseCaseTest extends TestCase
         $response = $searchSeasonUseCase->execute($query->criteria());
 
         $this->assertInstanceOf(SearchSeasonResponse::class, $response);
-        $this->assertContains($criteria['uuid'], $mockSearchResponse);
-        //$this->assertEquals($criteria['uuid'], $mockSearchResponse[0][0]);
+        //$this->assertContains($criteria['uuid'], $mockSearchResponse);
+        $this->assertEquals($criteria['uuid'], $mockSearchResponse[0][0]);
     }
 
     /**
@@ -83,7 +86,7 @@ class SearchSeasonUseCaseTest extends TestCase
         $response = $searchSeasonUseCase->execute($query->criteria());
 
         $this->assertInstanceOf(SearchSeasonResponse::class, $response);
-        $this->assertNotContains($criteria['uuid'], $mockSearchResponse);
-        //$this->assertEquals($criteria['uuid'], $mockSearchResponse[0][0]);
+        //$this->assertNotContains($criteria['uuid'], $mockSearchResponse);
+        $this->assertNotEquals($criteria['uuid'], $mockSearchResponse[0][0]);
     }
 }

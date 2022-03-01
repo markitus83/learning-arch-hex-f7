@@ -18,7 +18,7 @@ class SearchSeasonQuery
             throw new \TypeError("Criteria must be an array!! ".gettype($criteria));
         }
         if (empty($criteria)) {
-            throw new SeasonSearchEmptyCriteriaException('asdasda');
+            throw new SeasonSearchEmptyCriteriaException('Criteria can not be empty!!');
         }
 
         $this->criteria = $criteria;
