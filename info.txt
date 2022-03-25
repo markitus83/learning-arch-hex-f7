@@ -133,3 +133,14 @@ next:
 [X] revisar finds (return objs X en lugar de arrays X)
 [X] cambio uniqid >> uuid (ramsey)
 [ ] continuar test
+
+*************************************
+*************************************
+
+value objcet vs dto
+    VO tienen más lógica,
+    VO dentro de dominio
+    DTO dentro de application(usecase)
+    relacionar VO con DTO >> en los Command, se crear obj VO
+    tests a VO? no se acostumbra, ya es implicito al testear el usecase
+    son clases que aportant más informacion y logica de negocio

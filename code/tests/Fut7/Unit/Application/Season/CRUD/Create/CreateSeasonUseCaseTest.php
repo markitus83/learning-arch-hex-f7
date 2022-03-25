@@ -43,20 +43,7 @@ class CreateSeasonUseCaseTest extends TestCase
         $this->assertInstanceOf(CreateSeasonResponse::class, $response);
     }
 
-    public function testCreateSeasonUseCaseOk1()
-    {
-        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
-        $seasonDTO = $this->getMockBuilder(CreateSeasonCommand::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $createSeasonUseCase = new CreateSeasonUseCase($repository);
-        $response = $createSeasonUseCase->execute($seasonDTO);
-
-        $this->assertInstanceOf(CreateSeasonResponse::class, $response);
-    }
-
-    public function testCreateSeasonUseCaseOk2()
+    public function testCreateSeasonUseCaseCorrectData()
     {
         $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
 

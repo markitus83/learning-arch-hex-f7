@@ -12,7 +12,7 @@ class DeleteSeasonController
 {
     public function execute()
     {
-        $uuid = '409c88a9-e822-456d-95a0-c4331e54d9f0';
+        $uuid = '47784ab8-0142-4193-8cdf-9c723ccb4b56';
         echo 'Trying to delete Season.id = '.$uuid;
 
         try {

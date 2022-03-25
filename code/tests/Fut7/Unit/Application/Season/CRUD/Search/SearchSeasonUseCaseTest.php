@@ -36,6 +36,7 @@ class SearchSeasonUseCaseTest extends TestCase
         $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
 
         $criteria =  [];
+        // criteria vacio => return all data
         $query = new SearchSeasonQuery($criteria);
 
         $searchSeasonUseCase = new SearchSeasonUseCase($repository);
@@ -49,6 +50,7 @@ class SearchSeasonUseCaseTest extends TestCase
      */
     public function testSearchSeasonUseCase()
     {
+        // mock data >> fichero csv con datos mock, crear repostiory en base a este fichero e interactuar con él
         $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
         $mockSearchResponse = [
             ["c72134eb-e1c0-48eb-b6bf-7119aef18b9f","Tempo 2021-2022","2022-02-10 15:35:34","2022-02-10 15:35:34"],

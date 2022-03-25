@@ -22,16 +22,22 @@ class DeleteSeasonUseCaseTest extends TestCase
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
 
-    public function testDeleteSeasonUuid()
+    public function testDeleteSeasonInvalidUuid()
     {
-        $this->expectException(\TypeError::class);
+        //$this->expectException(\TypeError::class);
 
         $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $mockUuid = '19d0faf4-90dd-48a8-a09a-3f0aaa84475b';
+        $repository->method('find')->willReturn($mockUuid);
 
-        $uuid = ;
+        $uuid = '19d0faf4-90dd-48a8-a09a-3f0aaa84475b';
         $deleteSeasonUseCase = new DeleteSeasonUseCase($repository);
         $response = $deleteSeasonUseCase->execute($uuid);
 
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
+    }
+
+    public function testDeleteSeasonCorrectUuid()
+    {
     }
 }
