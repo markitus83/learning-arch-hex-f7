@@ -19,6 +19,10 @@ class DeleteSeasonUseCase
      */
     public function execute($uuid): DeleteSeasonResponse
     {
+        if (null === $uuid) {
+            throw new \TypeError("UUID must be a string!!");
+        }
+
         $season = $this->seasonRepository->find($uuid);
         $this->seasonRepository->delete($season);
         return new DeleteSeasonResponse($season);
