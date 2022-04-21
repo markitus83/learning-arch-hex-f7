@@ -2,33 +2,32 @@
 
 namespace Fut7\Application\Season\CRUD\Create;
 
+use Fut7\Domain\Exception\Season\SeasonNameException;
+use Fut7\Domain\Exception\Season\SeasonUuidException;
 use Fut7\Domain\ValueObject\SeasonName;
-use Fut7\Infrastructure\Shared\Utils\Uuid;
+use Fut7\Domain\ValueObject\SeasonUuid;
 
 class CreateSeasonCommand
 {
-    private Uuid $uuid;
+    private SeasonUuid $uuid;
     private SeasonName $name;
 
+    /**
+     * @throws SeasonUuidException
+     * @throws SeasonNameException
+     */
     public function __construct($uuid, $name)
     {
-        if (null === $name || 'string' !== gettype($name)) {
-            throw new \TypeError("Name must be a string!!");
-        }
-        if (!($uuid instanceof Uuid)) {
-            throw new \TypeError("Uuid must be an instance of Uuid!!");
-        }
-
-        $this->uuid = $uuid;
+        $this->uuid = new SeasonUuid($uuid);
         $this->name = new SeasonName($name);
     }
 
-    public function uuid(): Uuid
+    public function uuid(): SeasonUuid
     {
         return $this->uuid;
     }
 
-    public function name(): string
+    public function name(): SeasonName
     {
         return $this->name;
     }

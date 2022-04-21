@@ -2,25 +2,27 @@
 
 namespace Fut7\Domain\Entity\Season;
 
+use Fut7\Domain\ValueObject\SeasonName;
+use Fut7\Domain\ValueObject\SeasonUuid;
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 
 class Season
 {
-    private Uuid $uuid;
-    private string $name;
+    private SeasonUuid $uuid;
+    private SeasonName $name;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
 
     private function __construct(
-        Uuid $uuid,
-        string $name
+        SeasonUuid $uuid,
+        SeasonName $name
     )
     {
         $this->uuid = $uuid;
         $this->name = $name;
     }
 
-    public static function createFromScratch(Uuid $uuid, string $name): Season
+    public static function createFromScratch(SeasonUuid $uuid, SeasonName $name): Season
     {
         $season = new self($uuid, $name);
         $season->createdAt = $season->updatedAt = new \DateTime();
