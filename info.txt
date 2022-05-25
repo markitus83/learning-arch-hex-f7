@@ -143,4 +143,8 @@ value objcet vs dto
     DTO dentro de application(usecase)
     relacionar VO con DTO >> en los Command, se crear obj VO
     tests a VO? no se acostumbra, ya es implicito al testear el usecase
-    son clases que aportant más informacion y logica de negocio
+    son clases que aportan más informacion y logica de negocio
+
+*************************************
+*************************************
+

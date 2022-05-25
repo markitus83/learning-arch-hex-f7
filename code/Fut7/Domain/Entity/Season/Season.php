@@ -22,6 +22,11 @@ class Season
         $this->name = $name;
     }
 
+    /**
+     * @param SeasonUuid $uuid
+     * @param SeasonName $name
+     * @return Season
+     */
     public static function createFromScratch(SeasonUuid $uuid, SeasonName $name): Season
     {
         $season = new self($uuid, $name);
@@ -36,7 +41,7 @@ class Season
     public static function createFromRepository($seasonRepositoryData): Season
     {
         $season = new self(
-            new Uuid($seasonRepositoryData[0]),
+            new SeasonUuid(new Uuid($seasonRepositoryData[0])),
             $seasonRepositoryData[1]
         );
         $season->createdAt = new \DateTime($seasonRepositoryData[2]);
