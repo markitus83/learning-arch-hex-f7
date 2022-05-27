@@ -32,7 +32,7 @@ class SeasonName
      */
     private function validateEmptyValue($value)
     {
-        if (empty(trim($value))) {
+        if (null === $value || empty(trim($value))) {
             throw new SeasonNameException('Season name is mandatory');
         }
     }
