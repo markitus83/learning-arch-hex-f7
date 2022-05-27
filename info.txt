@@ -98,8 +98,8 @@ Flujo
     UseCase :: s'encarrega d'executar la lógica
 
 2º
-    cambio persistence file >> csv (https://csv.thephpleague.com/)
-    compeltar CRUD
+    cambio persistence from plain file to csv file (https://csv.thephpleague.com/)
+    completar CRUD
 
 ************************************
 ************************************
@@ -125,7 +125,8 @@ CLI Application >> propio bin/console
 next:
     [X] terminar CRUD Tournament
     [X] iniciar test CreateSeason
-        (PHP Unit) how execute test: ./code/vendor/phpunit/phpunit/phpunit tests/StackTest.php
+        (PHP Unit) how execute test(root path): ./code/vendor/phpunit/phpunit/phpunit tests
+        (PHP Unit) how execute test(inside code folder): ./vendor/phpunit/phpunit/phpunit tests
 
 ************************************
 ************************************
