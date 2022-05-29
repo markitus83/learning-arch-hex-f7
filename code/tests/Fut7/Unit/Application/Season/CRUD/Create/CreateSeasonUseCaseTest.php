@@ -4,15 +4,39 @@ namespace Fut7\Unit\Application\Season\CRUD\Create;
 
 use Fut7\Application\Season\CRUD\Create\CreateSeasonCommand;
 use Fut7\Application\Season\CRUD\Create\CreateSeasonUseCase;
-use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
 use Fut7\Domain\Exception\Season\SeasonNameException;
 use Fut7\Domain\Exception\Season\SeasonUuidException;
 use Fut7\Domain\Response\Season\CreateSeasonResponse;
+use Fut7\Infrastructure\Persistence\Season\CsvSeasonRepository;
+use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 use PHPUnit\Framework\TestCase;
 
 class CreateSeasonUseCaseTest extends TestCase
 {
+    public static function setUpBeforeClass(): void
+    {
+        if (!is_dir(getcwd().'/tests/Fut7/Data')) {
+            mkdir(getcwd().'/tests/Fut7/Data');
+        }
+
+        if (file_exists(getcwd().'/tests/Fut7/Data/SeasonTest.csv')) {
+            unlink(getcwd().'/tests/Fut7/Data/SeasonTest.csv');
+        }
+
+        if (copy(getcwd().'/Fut7/Data/Season.csv', getcwd().'/tests/Fut7/Data/SeasonTest.csv')) {
+            echo 'SeasonTest.csv loaded'.PHP_EOL;
+        }
+        else {
+            echo 'Error loading SeasonTest.csv'.PHP_EOL;
+        }
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        //unlink(getcwd().'/tests/Fut7/Data/SeasonTest.csv');
+    }
+
     /**
      * @throws SeasonNameException
      * @throws SeasonUuidException
@@ -21,7 +45,7 @@ class CreateSeasonUseCaseTest extends TestCase
     {
         $this->expectException(SeasonUuidException::class);
 
-        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
 
         $uuid = null;
         $name = 'mock-season-name';
@@ -41,7 +65,7 @@ class CreateSeasonUseCaseTest extends TestCase
     {
         $this->expectException(SeasonNameException::class);
 
-        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
 
         $uuid = new Uuid();
         $name = null;
@@ -61,7 +85,7 @@ class CreateSeasonUseCaseTest extends TestCase
     {
         $this->expectException(SeasonNameException::class);
 
-        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
 
         $uuid = new Uuid();
         $name = '';
@@ -79,10 +103,10 @@ class CreateSeasonUseCaseTest extends TestCase
      */
     public function testCreateSeasonUseCaseCorrectData()
     {
-        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
 
         $uuid = new Uuid();
-        $name = 'test';
+        $name = 'integration test';
         $seasonDTO = new CreateSeasonCommand($uuid, $name);
 
         $createSeasonUseCase = new CreateSeasonUseCase($repository);
