@@ -27,7 +27,7 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
         try {
             $this->repository->createHeaders($header);
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new SeasonCreateException($season->id());
+            throw new SeasonCreateException($season->uuid());
         }
 
         $record = [
@@ -42,21 +42,21 @@ class CsvSeasonRepository extends Fut7CsvRepository implements SeasonRepositoryI
         try {
             $this->repository->create($record);
         } catch (CannotInsertRecord $cannotInsertRecord) {
-            throw new SeasonCreateException($season->id());
+            throw new SeasonCreateException($season->uuid());
         }
     }
 
     /**
-     * @param $id
+     * @param $uuid
      * @return Season
      * @throws SeasonNotFoundException
      */
-    public function find($id): Season
+    public function find($uuid): Season
     {
         try {
-            return Season::createFromRepository($this->repository->find($id));
+            return Season::createFromRepository($this->repository->find($uuid));
         } catch (CsvItemNotFoundException $csvItemNotFoundException) {
-            throw new SeasonNotFoundException($id);
+            throw new SeasonNotFoundException($uuid);
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

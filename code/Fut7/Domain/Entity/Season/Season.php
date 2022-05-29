@@ -52,7 +52,7 @@ class Season
 
     public function uuid(): string
     {
-        return $this->uuid->value();
+        return $this->uuid;
     }
 
     public function name(): string
