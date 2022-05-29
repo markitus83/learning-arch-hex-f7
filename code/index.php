@@ -11,7 +11,6 @@ use Fut7\UserInterface\Controller\Season\CRUD\ViewSeasonController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\CreateTournamentController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\DeleteTournamentController;
 use Fut7\UserInterface\Controller\Tournament\CRUD\FindTournamentController;
-use Fut7\UserInterface\CLI\Command\ViewSeasonDataCommand;
 
 
 use Fut7\UserInterface\Controller\Tournament\CRUD\SearchTournamentController;
