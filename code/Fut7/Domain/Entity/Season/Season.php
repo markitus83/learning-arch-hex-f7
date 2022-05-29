@@ -42,7 +42,7 @@ class Season
     {
         $season = new self(
             new SeasonUuid(new Uuid($seasonRepositoryData[0])),
-            $seasonRepositoryData[1]
+            new SeasonName($seasonRepositoryData[1])
         );
         $season->createdAt = new \DateTime($seasonRepositoryData[2]);
         $season->updatedAt = new \DateTime($seasonRepositoryData[3]);
