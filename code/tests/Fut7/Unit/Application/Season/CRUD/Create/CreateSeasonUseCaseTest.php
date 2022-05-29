@@ -25,10 +25,10 @@ class CreateSeasonUseCaseTest extends TestCase
         }
 
         if (copy(getcwd().'/Fut7/Data/Season.csv', getcwd().'/tests/Fut7/Data/SeasonTest.csv')) {
-            echo 'SeasonTest.csv loaded'.PHP_EOL;
+            echo PHP_EOL.'[CreateSeasonTests]SeasonTest.csv loaded'.PHP_EOL;
         }
         else {
-            echo 'Error loading SeasonTest.csv'.PHP_EOL;
+            echo PHP_EOL.'[CreateSeasonTests]Error loading SeasonTest.csv'.PHP_EOL;
         }
     }
 
