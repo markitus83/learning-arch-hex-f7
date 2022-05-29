@@ -3,7 +3,8 @@
 namespace Fut7\Application\Season\CRUD\Delete;
 
 use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
-use Fut7\Domain\Entity\Season\Season;
+use Fut7\Domain\Exception\Season\SeasonNotFoundException;
+use Fut7\Domain\Exception\Season\SeasonUuidException;
 use Fut7\Domain\Response\Season\DeleteSeasonResponse;
 
 class DeleteSeasonUseCase
@@ -21,11 +22,11 @@ class DeleteSeasonUseCase
     public function execute($uuid): DeleteSeasonResponse
     {
         if (null === $uuid) {
-            throw new \TypeError("UUID must be a string!!");
+            throw new SeasonUuidException('Season uuid not must be null or empty');
         }
         $season = $this->seasonRepository->find($uuid);
         if (null == $season) {
-            throw new \TypeError('Season with uuid '.$uuid.' not found. Skip delete action');
+            throw new SeasonNotFoundException('Season with uuid '.$uuid.' not found. Skip delete action');
         }
 
 
