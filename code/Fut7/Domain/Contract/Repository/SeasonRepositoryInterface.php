@@ -7,7 +7,7 @@ use Fut7\Domain\Entity\Season\Season;
 interface SeasonRepositoryInterface
 {
     public function create(Season $season);
-    public function find($id);
+    public function find($uuid);
     public function search(array $criteria);
     public function update(Season $season);
     public function delete(Season $season);
