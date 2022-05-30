@@ -50,7 +50,7 @@ class DeleteSeasonUseCaseTest extends TestCase
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
 
-    public function testDeleteSeasonInvalidUuid()
+    public function testDeleteSeasonNotExistUuid()
     {
         $this->expectException(SeasonNotFoundException::class);
 
@@ -63,7 +63,7 @@ class DeleteSeasonUseCaseTest extends TestCase
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
 
-    public function testDeleteSeasonCorrectUuid()
+    public function testDeleteSeasonExistUuid()
     {
         $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
 

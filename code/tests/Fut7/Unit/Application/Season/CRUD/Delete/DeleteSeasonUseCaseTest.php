@@ -29,7 +29,7 @@ class DeleteSeasonUseCaseTest extends TestCase
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
 
-    public function testDeleteSeasonInvalidUuid()
+    public function testDeleteSeasonNotExistUuid()
     {
         $this->expectException(SeasonNotFoundException::class);
 
@@ -43,7 +43,7 @@ class DeleteSeasonUseCaseTest extends TestCase
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
 
-    public function testDeleteSeasonCorrectUuid()
+    public function testDeleteSeasonExistUuid()
     {
         $mockUuid = Uuid::createFromString('19d0faf4-90dd-48a8-a09a-3f0aaa84475b');
         $mockName = 'mock-season';
