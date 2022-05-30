@@ -151,6 +151,9 @@ value objcet vs dto
 
 [?]
 scaffolding test '.../Unit/...' quitarlo? namespaces con scaffolding de 'code'
+
 DeleteSeasionUseCase
     >> not use Command?
     >> execute espera uuid.string error al pasar uuid.obj, correcto?
+
+sacffolding tests >> https://franiglesias.github.io/application-architecture/
