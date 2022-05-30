@@ -4,44 +4,23 @@ namespace Fut7\Unit\Application\Season\CRUD\Delete;
 
 use Fut7\Application\Season\CRUD\Delete\DeleteSeasonUseCase;
 
+use Fut7\Domain\Contract\Repository\SeasonRepositoryInterface;
+use Fut7\Domain\Entity\Season\Season;
 use Fut7\Domain\Exception\Season\SeasonNotFoundException;
 use Fut7\Domain\Exception\Season\SeasonUuidException;
 use Fut7\Domain\Response\Season\DeleteSeasonResponse;
-use Fut7\Infrastructure\Persistence\Season\CsvSeasonRepository;
-use Fut7\Infrastructure\Persistence\Shared\CsvRepository;
+use Fut7\Domain\ValueObject\SeasonName;
+use Fut7\Domain\ValueObject\SeasonUuid;
 use Fut7\Infrastructure\Shared\Utils\Uuid;
 use PHPUnit\Framework\TestCase;
 
 class DeleteSeasonUseCaseTest extends TestCase
 {
-    public static function setUpBeforeClass(): void
-    {
-        if (!is_dir(getcwd().'/tests/Fut7/Data')) {
-            mkdir(getcwd().'/tests/Fut7/Data');
-        }
-
-        if (file_exists(getcwd().'/tests/Fut7/Data/SeasonTest.csv')) {
-            unlink(getcwd().'/tests/Fut7/Data/SeasonTest.csv');
-        }
-
-        if (copy(getcwd().'/Fut7/Data/Season.csv', getcwd().'/tests/Fut7/Data/SeasonTest.csv')) {
-            echo PHP_EOL.'[DeleteSeasonTests]SeasonTest.csv loaded'.PHP_EOL;
-        }
-        else {
-            echo PHP_EOL.'[DeleteSeasonTests]Error loading SeasonTest.csv'.PHP_EOL;
-        }
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        //unlink(getcwd().'/tests/Fut7/Data/SeasonTest.csv');
-    }
-
     public function testDeleteSeasonNullUuid()
     {
         $this->expectException(SeasonUuidException::class);
 
-        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
+        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
 
         $uuid = null;
         $deleteSeasonUseCase = new DeleteSeasonUseCase($repository);
@@ -54,23 +33,33 @@ class DeleteSeasonUseCaseTest extends TestCase
     {
         $this->expectException(SeasonNotFoundException::class);
 
-        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
+        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $repository->method('find')->willThrowException(new SeasonNotFoundException());
 
-        $uuid = new Uuid();
+        $uuid = '19d0faf4-90dd-48a8-a09a-3f0aaa84475b';
         $deleteSeasonUseCase = new DeleteSeasonUseCase($repository);
-        $response = $deleteSeasonUseCase->execute($uuid->value());
+        $response = $deleteSeasonUseCase->execute($uuid);
 
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
 
     public function testDeleteSeasonCorrectUuid()
     {
-        $repository = new CsvSeasonRepository(new CsvRepository(getcwd().'/tests/Fut7/Data/SeasonTest.csv'));
+        $mockUuid = Uuid::createFromString('19d0faf4-90dd-48a8-a09a-3f0aaa84475b');
+        $mockName = 'mock-season';
+        $mockSeasonUuid = new SeasonUuid($mockUuid);
+        $mockSeasonName = new SeasonName($mockName);
+        $mockSeason = Season::createFromScratch($mockSeasonUuid, $mockSeasonName);
 
-        $uuid = '47784ab8-0142-4193-8cdf-9c723ccb4b56';
+        $repository = $this->getMockBuilder(SeasonRepositoryInterface::class)->getMock();
+        $repository->method('find')->willReturn($mockSeason);
+
+        $uuid = '19d0faf4-90dd-48a8-a09a-3f0aaa84475b';
         $deleteSeasonUseCase = new DeleteSeasonUseCase($repository);
         $response = $deleteSeasonUseCase->execute($uuid);
 
         $this->assertInstanceOf(DeleteSeasonResponse::class, $response);
     }
+
+
 }
