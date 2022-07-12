@@ -8,6 +8,9 @@ class FindSeasonQuery
 {
     private string $uuid;
 
+    /**
+     * @throws SeasonUuidException
+     */
     public function __construct($uuid)
     {
         if (null === $uuid) {
