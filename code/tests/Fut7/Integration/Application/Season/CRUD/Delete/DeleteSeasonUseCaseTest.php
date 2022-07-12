@@ -25,7 +25,7 @@ class DeleteSeasonUseCaseTest extends TestCase
         }
 
         if (copy(getcwd().'/Fut7/Data/Season.csv', getcwd().'/tests/Fut7/Data/SeasonTest.csv')) {
-            echo PHP_EOL.'[DeleteSeasonTests]SeasonTest.csv loaded'.PHP_EOL;
+            echo PHP_EOL.'[DeleteSeasonTests]SeasonTest.csv loaded and ready to run the tests'.PHP_EOL;
         }
         else {
             echo PHP_EOL.'[DeleteSeasonTests]Error loading SeasonTest.csv'.PHP_EOL;
